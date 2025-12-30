@@ -1,6 +1,11 @@
-from typing import Any
+import sys
 
-from book_stats import count_letters_in_book, count_words_in_book, sort_letter_counts
+from book_stats import (
+    LetterCount,
+    count_letters_in_book,
+    count_words_in_book,
+    sort_letter_counts,
+)
 
 
 def get_book_text(file_path: str) -> str:
@@ -20,7 +25,7 @@ def get_book_text(file_path: str) -> str:
 def print_report(
     file_path: str,
     word_count: int,
-    sorted_letters: list[dict[str, Any]],
+    sorted_letters: list[LetterCount],
 ) -> None:
     print("================== BOOKBOT ==================")
     print(f"Reading book from {file_path}...")
@@ -34,8 +39,17 @@ def print_report(
 
 
 def main():
-    file_path = "books/treasureisland.txt"
-    book_text = get_book_text(file_path)
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    file_path = sys.argv[1]
+
+    try:
+        book_text = get_book_text(file_path)
+    except FileNotFoundError:
+        print(f"Cannot find the book you are looking for: {file_path}")
+        sys.exit(1)
+
     word_count = count_words_in_book(book_text)
     letter_counts = count_letters_in_book(book_text)
     sorted_letters = sort_letter_counts(letter_counts)

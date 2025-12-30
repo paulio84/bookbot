@@ -1,4 +1,9 @@
-from typing import Any
+from typing import TypedDict
+
+
+class LetterCount(TypedDict):
+    char: str
+    num: int
 
 
 def count_words_in_book(book_text: str) -> int:
@@ -33,19 +38,19 @@ def count_letters_in_book(book_text: str) -> dict[str, int]:
     return letters
 
 
-def sort_letter_counts(letter_counts: dict[str, int]) -> list[dict[str, Any]]:
+def sort_letter_counts(letter_counts: dict[str, int]) -> list[LetterCount]:
     """
     sort_letter_counts sorts the dictionary of letters by the number of occurences, descending.
 
     :param letter_counts: A dictionary of the number of occurences of letters.
     :type letter_counts: dict[str, int]
     :return: A sorted list of letters, each as a dictionary item e.g. {"char": "a", "num": 14}
-    :rtype: list[dict[str, Any]]
+    :rtype: list[LetterCount]
     """
     sorted_letters = [{"char": ch, "num": count} for ch, count in letter_counts.items()]
     sorted_letters.sort(reverse=True, key=sort_on)
     return sorted_letters
 
 
-def sort_on(items: dict[str, Any]) -> int:
+def sort_on(items: LetterCount) -> int:
     return items["num"]
