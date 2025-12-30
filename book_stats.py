@@ -26,10 +26,10 @@ def count_letters_in_book(book_text: str) -> dict[str, int]:
     :param book_text: The text of the book.
     :type book_text: str
     :return: Returns a dictionary containing the letters as keys
-    and the number of occurences as values.
+    and the number of occurrences as values.
     :rtype: dict[str, int]
     """
-    letters = {}
+    letters: dict[str, int] = {}
     for character in book_text.lower():
         if character.isalpha():
             letters[character] = letters.get(character, 0) + 1
@@ -39,9 +39,9 @@ def count_letters_in_book(book_text: str) -> dict[str, int]:
 
 def sort_letter_counts(letter_counts: dict[str, int]) -> list[LetterCount]:
     """
-    sort_letter_counts sorts the dictionary of letters by the number of occurences, descending.
+    sort_letter_counts sorts the dictionary of letters by the number of occurrences, descending.
 
-    :param letter_counts: A dictionary of the number of occurences of letters.
+    :param letter_counts: A dictionary of the number of occurrences of letters.
     :type letter_counts: dict[str, int]
     :return: A sorted list of letters, each as a dictionary item e.g. {"char": "a", "num": 14}
     :rtype: list[LetterCount]
@@ -51,5 +51,5 @@ def sort_letter_counts(letter_counts: dict[str, int]) -> list[LetterCount]:
     return sorted_letters
 
 
-def sort_on(items: LetterCount) -> int:
-    return items["num"]
+def sort_on(item: LetterCount) -> int:
+    return item["num"]

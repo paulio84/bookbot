@@ -32,7 +32,7 @@ def print_report(
     print("---------------------------------------------")
     print(f"Found {word_count} total words")
     print("---------------------------------------------")
-    print("Character counts:")
+    print("Character counts (by frequency):")
     for item in sorted_letters:
         print(f"{item['char']}: {item['num']}")
     print("==================== END ====================")
@@ -46,8 +46,13 @@ def main():
 
     try:
         book_text = get_book_text(file_path)
+        if not book_text.strip():
+            raise ValueError("The book file is empty")
     except FileNotFoundError:
         print(f"Cannot find the book you are looking for: {file_path}")
+        sys.exit(1)
+    except ValueError as e:
+        print(e)
         sys.exit(1)
 
     word_count = count_words_in_book(book_text)
