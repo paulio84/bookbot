@@ -1,3 +1,6 @@
+from book_stats import count_words_in_book
+
+
 def get_book_text(file_path: str) -> str:
     """
     get_book_text takes a file_path parameter as a string, opens and reads the file.
@@ -15,7 +18,8 @@ def get_book_text(file_path: str) -> str:
 def main():
     file_path = "books/treasureisland.txt"
     book_text = get_book_text(file_path)
-    print(book_text)
+    words_count = count_words_in_book(book_text)
+    print(f"Found {words_count} total words")
 
 
 if __name__ == "__main__":
