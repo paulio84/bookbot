@@ -47,9 +47,10 @@ def sort_letter_counts(letter_counts: dict[str, int]) -> list[LetterCount]:
     :rtype: list[LetterCount]
     """
     sorted_letters = [{"char": ch, "num": count} for ch, count in letter_counts.items()]
-    sorted_letters.sort(reverse=True, key=sort_on)
+    sorted_letters.sort(key=sort_on)
+    print(sorted_letters)
     return sorted_letters
 
 
 def sort_on(item: LetterCount) -> int:
-    return item["num"]
+    return (-item["num"], item["char"])
