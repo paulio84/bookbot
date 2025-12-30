@@ -30,10 +30,9 @@ def count_letters_in_book(book_text: str) -> dict[str, int]:
     :rtype: dict[str, int]
     """
     letters = {}
-    for word in book_text.lower():
-        for character in word:
-            if character.isalpha():
-                letters[character] = letters.get(character, 0) + 1
+    for character in book_text.lower():
+        if character.isalpha():
+            letters[character] = letters.get(character, 0) + 1
 
     return letters
 
