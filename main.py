@@ -13,13 +13,19 @@ def get_book_text(file_path: str) -> str:
     get_book_text takes a file_path parameter as a string, opens and reads the file.
     It returns a string containing the contents of the book.
 
+    If the book content is empty, a ValueError is raised.
+
     :param file_path: The path to a book file. Should be a textfile.
     :type file_path: str
     :return: The contents of the book.
     :rtype: str
     """
     with open(file_path, encoding="utf-8") as file:
-        return file.read()
+        content = file.read()
+
+    if not content.strip():
+        raise ValueError("The book file is empty")
+    return content
 
 
 def print_report(
@@ -46,8 +52,6 @@ def main():
 
     try:
         book_text = get_book_text(file_path)
-        if not book_text.strip():
-            raise ValueError("The book file is empty")
     except FileNotFoundError:
         print(f"Cannot find the book you are looking for: {file_path}")
         sys.exit(1)
