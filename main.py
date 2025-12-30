@@ -15,11 +15,20 @@ def get_book_text(file_path: str) -> str:
         return file.read()
 
 
+def print_report(file_path: str, word_count: int) -> None:
+    print("================== BOOKBOT ==================")
+    print(f"Reading book from {file_path}...")
+    print("---------------------------------------------")
+    print(f"Found {word_count} total words")
+    print("---------------------------------------------")
+
+
 def main():
     file_path = "books/treasureisland.txt"
     book_text = get_book_text(file_path)
-    words_count = count_words_in_book(book_text)
-    print(f"Found {words_count} total words")
+    word_count = count_words_in_book(book_text)
+    
+    print_report(file_path, word_count)
 
 
 if __name__ == "__main__":
